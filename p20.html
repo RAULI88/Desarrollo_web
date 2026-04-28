@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 20 - Operaciones con Captura</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+        .res-box { background: #fff; padding: 15px; border: 1px solid #ddd; border-radius: 5px; display: inline-block; }
+        b { color: #004a99; }
+    </style>
+</head>
+<body>
+    <h1>Cálculos Aritméticos (Captura con Prompt)</h1>
+    <div id="resultado" class="res-box">
+        Esperando entrada de datos...
+    </div>
+
+    <script>
+        // Captura de datos mediante ventanas emergentes
+        let dato1 = prompt("Ingresa el valor para la variable A:");
+        let dato2 = prompt("Ingresa el valor para la variable B:");
+
+        // Conversión a números para evitar concatenación de texto
+        let a = Number(dato1);
+        let b = Number(dato2);
+
+        // Validación básica y salida de resultados
+        if (isNaN(a) || isNaN(b)) {
+            document.getElementById("resultado").innerHTML = "Error: Debes ingresar números válidos.";
+        } else {
+            document.getElementById("resultado").innerHTML = `
+                <p>Valores contenidos: <b>A = ${a}</b>, <b>B = ${b}</b></p>
+                <hr>
+                <p>La <b>suma</b> es: ${a + b}</p>
+                <p>La <b>resta</b> es: ${a - b}</p>
+                <p>La <b>división</b> es: ${a / b}</p>
+                <p>La <b>exponenciación</b> es: ${a ** b}</p>
+            `;
+        }
+    </script>
+</body>
+</html>

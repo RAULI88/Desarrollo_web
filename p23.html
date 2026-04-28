@@ -1,0 +1,10 @@
+Peso (kg): <input type="number" id="p"> Altura (m): <input type="number" step="0.01" id="a">
+<button onclick="imc()">Calcular IMC</button><p id="r"></p>
+<script>
+    function imc() {
+        let p = Number(document.getElementById('p').value), a = Number(document.getElementById('a').value);
+        let res = p / (a * a);
+        let grado = res < 18.5 ? "Bajo peso" : res < 24.9 ? "Normal" : res < 29.9 ? "Sobrepeso" : "Obesidad";
+        document.getElementById('r').innerText = `IMC: ${res.toFixed(1)} - Grado: ${grado}`;
+    }
+</script>

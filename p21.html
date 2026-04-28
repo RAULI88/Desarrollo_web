@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 21 - Calculadora con Formulario</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 30px; background-color: #f0f4f8; }
+        .container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; }
+        h2 { color: #004a99; margin-top: 0; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+        button { padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; }
+        .btn-suma { background-color: #28a745; }
+        .btn-resta { background-color: #dc3545; }
+        .btn-div { background-color: #17a2b8; }
+        .btn-exp { background-color: #6f42c1; }
+        button:hover { opacity: 0.8; }
+        #resultado { margin-top: 20px; padding: 15px; border-radius: 4px; background: #e9ecef; font-weight: bold; text-align: center; color: #333; min-height: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calculadora FIM</h2>
+    
+    <div class="input-group">
+        <label for="numA">Variable A:</label>
+        <input type="number" id="numA" placeholder="Ingresa primer número">
+    </div>
+
+    <div class="input-group">
+        <label for="numB">Variable B:</label>
+        <input type="number" id="numB" placeholder="Ingresa segundo número">
+    </div>
+
+    <div class="buttons">
+        <button class="btn-suma" onclick="operacion('suma')">Sumar</button>
+        <button class="btn-resta" onclick="operacion('resta')">Restar</button>
+        <button class="btn-div" onclick="operacion('div')">Dividir</button>
+        <button class="btn-exp" onclick="operacion('exp')">Exponenciación</button>
+    </div>
+
+    <div id="resultado">Elige una operación</div>
+</div>
+
+<script>
+    function operacion(tipo) {
+        // Obtenemos los valores de las cajas de texto
+        let a = Number(document.getElementById('numA').value);
+        let b = Number(document.getElementById('numB').value);
+        let res = 0;
+        let simbolo = "";
+
+        // Validar que se hayan ingresado datos
+        if (document.getElementById('numA').value === "" || document.getElementById('numB').value === "") {
+            document.getElementById('resultado').innerHTML = "⚠️ Por favor, llena ambos campos";
+            return;
+        }
+
+        // Lógica según el botón presionado
+        switch(tipo) {
+            case 'suma':
+                res = a + b;
+                simbolo = "+";
+                break;
+            case 'resta':
+                res = a - b;
+                simbolo = "-";
+                break;
+            case 'div':
+                if (b === 0) {
+                    document.getElementById('resultado').innerHTML = " Error: División por cero";
+                    return;
+                }
+                res = a / b;
+                simbolo = "/";
+                break;
+            case 'exp':
+                res = Math.pow(a, b);
+                simbolo = "^";
+                break;
+        }
+
+        // Imprimir el resultado en la página
+        document.getElementById('resultado').innerHTML = `Resultado: ${a} ${simbolo} ${b} = ${res}`;
+    }
+</script>
+
+</body>
+</html>
