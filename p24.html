@@ -1,8 +1,40 @@
-<script>
-    let d = new Date(), dias = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"], meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-    let diaTxt, mesTxt;
-    switch(d.getDay()){ case 0: diaTxt=dias[0]; break; case 1: diaTxt=dias[1]; break; case 2: diaTxt=dias[2]; break; case 3: diaTxt=dias[3]; break; case 4: diaTxt=dias[4]; break; case 5: diaTxt=dias[5]; break; case 6: diaTxt=dias[6]; break; }
-    switch(d.getMonth()){ case 2: mesTxt=meses[2]; break; case 3: mesTxt=meses[3]; break; /* ... */ } 
-    // Para simplificar, obtenemos los valores directamente en la prueba
-    document.write(`Hoy es ${dias[d.getDay()]} ${d.getDate()} de ${meses[d.getMonth()]} del año ${d.getFullYear()}`);
-</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 24 - Fecha</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 30px; background-color: #f0f4f8; display: flex; justify-content: center; }
+        .container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        h2 { color: #004a99; margin-top: 0; }
+        button { width: 100%; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; background-color: #004a99; margin-top: 15px; }
+        button:hover { opacity: 0.8; }
+        #resultado { margin-top: 20px; padding: 15px; border-radius: 4px; background: #e9ecef; font-weight: bold; color: #333; min-height: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Fecha del Sistema</h2>
+        <p>Presiona el botón para generar la fecha actual usando la estructura Switch.</p>
+        <button onclick="generarFecha()">Obtener Fecha Actual</button>
+        <div id="resultado">...</div>
+    </div>
+
+    <script>
+        function generarFecha() {
+            let d = new Date();
+            let nDia = d.getDay();
+            let diaTxt = "";
+            let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            
+            switch(nDia) {
+                case 0: diaTxt = "domingo"; break; case 1: diaTxt = "lunes"; break;
+                case 2: diaTxt = "martes"; break; case 3: diaTxt = "miércoles"; break;
+                case 4: diaTxt = "jueves"; break; case 5: diaTxt = "viernes"; break;
+                case 6: diaTxt = "sábado"; break;
+            }
+            document.getElementById('resultado').innerText = `Hoy es ${diaTxt} ${d.getDate()} de ${meses[d.getMonth()]} del año ${d.getFullYear()}`;
+        }
+    </script>
+</body>
+</html>

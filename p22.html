@@ -1,11 +1,54 @@
-a: <input type="number" id="a"> b: <input type="number" id="b"> c: <input type="number" id="c">
-<button onclick="fg()">Calcular x1 y x2</button><p id="r"></p>
-<script>
-    function fg() {
-        let a = Number(document.getElementById('a').value), b = Number(document.getElementById('b').value), c = Number(document.getElementById('c').value);
-        let d = (b*b) - (4*a*c);
-        if(d < 0) return document.getElementById('r').innerText = "Raíces imaginarias";
-        let x1 = (-b + Math.sqrt(d)) / (2*a), x2 = (-b - Math.sqrt(d)) / (2*a);
-        document.getElementById('r').innerText = `x1 = ${x1.toFixed(2)}, x2 = ${x2.toFixed(2)}`;
-    }
-</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 22 - Fórmula General</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 30px; background-color: #f0f4f8; display: flex; justify-content: center; }
+        .container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { color: #004a99; margin-top: 0; text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; background-color: #28a745; margin-top: 10px; }
+        button:hover { opacity: 0.8; }
+        #resultado { margin-top: 20px; padding: 15px; border-radius: 4px; background: #e9ecef; font-weight: bold; text-align: center; color: #333; min-height: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Fórmula General</h2>
+        <div class="input-group">
+            <label>Valor de a:</label>
+            <input type="number" id="valA">
+        </div>
+        <div class="input-group">
+            <label>Valor de b:</label>
+            <input type="number" id="valB">
+        </div>
+        <div class="input-group">
+            <label>Valor de c:</label>
+            <input type="number" id="valC">
+        </div>
+        <button onclick="calcularRaices()">Calcular x1 y x2</button>
+        <div id="resultado">Esperando valores...</div>
+    </div>
+
+    <script>
+        function calcularRaices() {
+            let a = Number(document.getElementById('valA').value);
+            let b = Number(document.getElementById('valB').value);
+            let c = Number(document.getElementById('valC').value);
+            let d = (b*b) - (4*a*c);
+            
+            if(d < 0) {
+                document.getElementById('resultado').innerText = "❌ Las raíces son imaginarias.";
+            } else {
+                let x1 = (-b + Math.sqrt(d)) / (2*a);
+                let x2 = (-b - Math.sqrt(d)) / (2*a);
+                document.getElementById('resultado').innerText = `x1 = ${x1.toFixed(2)} \n x2 = ${x2.toFixed(2)}`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -2,27 +2,100 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Propuesta Rediseño - FIM UAS</title>
+    <title>FIM UAS - Rediseño</title>
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; background: #f9f9f9; }
-        header { background: #004a99; color: white; padding: 15px 5%; display: flex; justify-content: space-between; }
-        .hero { text-align: center; padding: 60px 20px; background: #003366; color: white; }
-        .features { display: flex; justify-content: center; gap: 20px; padding: 40px; }
-        .box { background: white; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 30%; text-align: center; border-bottom: 4px solid #fecb00; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        :root { --uas-blue: #002b5c; --uas-gold: #ffc72c; }
+        
+        /* Encabezado Azul */
+        .top-header { background-color: var(--uas-blue); color: white; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .top-header h1 { font-size: 1.8rem; font-weight: normal; }
+        .top-header h1 strong { font-weight: bold; font-size: 2.2rem; display: block; }
+        
+        /* Barra de Navegación Dorada */
+        nav { background-color: var(--uas-gold); padding: 10px 5%; }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { color: black; text-decoration: none; font-weight: bold; padding: 5px 10px; transition: 0.3s; }
+        nav a:hover { background-color: rgba(0,0,0,0.1); }
+        
+        /* Banner Principal */
+        .hero { background: linear-gradient(to right, var(--uas-blue) 40%, transparent), url('https://via.placeholder.com/1200x400') center/cover; color: white; padding: 60px 5%; }
+        .hero h2 { font-style: italic; font-size: 2.5rem; margin-bottom: 10px; color: white; border-bottom: 3px solid var(--uas-gold); display: inline-block; }
+        .hero ul { list-style: none; margin-top: 20px; font-size: 1.2rem; line-height: 1.8; }
+        
+        /* Contenido Inferior */
+        .content { display: flex; padding: 40px 5%; gap: 30px; background: #eef1f6; }
+        .main-section { flex: 3; background: white; padding: 20px; border-top: 4px solid var(--uas-blue); box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .sidebar { flex: 1; background: var(--uas-blue); color: white; }
+        .sidebar-title { background: var(--uas-blue); padding: 15px; font-size: 1.2rem; font-weight: bold; text-align: center; border-bottom: 2px solid var(--uas-gold); }
+        .sidebar ul { list-style: none; background: #f4f4f4; color: #333; }
+        .sidebar li { padding: 12px 15px; border-bottom: 1px solid #ddd; cursor: pointer; }
+        .sidebar li:hover { background: #e0e0e0; }
     </style>
 </head>
 <body>
-    <header>
-        <h2>FIM UAS</h2><nav>Inicio | Carreras | Contacto</nav>
-    </header>
+
+    <div class="top-header">
+        <div>
+            <h1>UNIVERSIDAD AUTÓNOMA DE SINALOA<br><strong>FACULTAD DE INGENIERÍA MOCHIS</strong></h1>
+        </div>
+        <div>
+            <span style="font-size: 0.8rem;">● ING. CIVIL ● ING. GEODÉSICA ● ING. DE SOFTWARE</span>
+        </div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Misión y Visión</a></li>
+            <li><a href="#">Licenciatura</a></li>
+            <li><a href="#">Posgrado</a></li>
+            <li><a href="#">SECIHTI</a></li>
+            <li><a href="#">Cursos</a></li>
+        </ul>
+    </nav>
+
     <div class="hero">
-        <h1>Facultad de Ingeniería Mochis</h1>
-        <p>Innovación, Tecnología y Futuro.</p>
+        <h2>Facultad de Ingeniería Mochis</h2><br>
+        <h3 style="color: var(--uas-gold); font-style: italic; font-size: 1.8rem;">Oferta Educativa</h3>
+        <ul>
+            <li>Ingeniería Civil</li>
+            <li>Ingeniería Geodésica</li>
+            <li>Ingeniería de Software</li>
+            <li>Ingeniería en Procesos Industriales</li>
+        </ul>
     </div>
-    <div class="features">
-        <div class="box"><h3>Ingeniería de Software</h3><p>Desarrollo y automatización.</p></div>
-        <div class="box"><h3>Ingeniería Civil</h3><p>Infraestructura del mañana.</p></div>
-        <div class="box"><h3>Ingeniería Geodésica</h3><p>Ciencias de la tierra.</p></div>
+
+    <div class="content">
+        <div class="main-section">
+            <h2 style="color: #555; margin-bottom: 20px;">Programación exámenes extraordinarios</h2>
+            <table style="width: 100%; border-collapse: collapse; text-align: center;">
+                <tr style="background: var(--uas-blue); color: white;">
+                    <th colspan="3" style="padding: 10px;">PROGRAMACIÓN</th>
+                </tr>
+                <tr style="background: #004488; color: white;">
+                    <th style="padding: 10px;">INGENIERÍA CIVIL</th>
+                    <th>INGENIERÍA DE SOFTWARE</th>
+                    <th>INGENIERÍA GEODÉSICA</th>
+                </tr>
+                <tr>
+                    <td style="padding: 30px; border: 1px solid #ccc; background: #cce0ff;">📄 Descargar</td>
+                    <td style="padding: 30px; border: 1px solid #ccc; background: #cce0ff;">📄 Descargar</td>
+                    <td style="padding: 30px; border: 1px solid #ccc; background: #cce0ff;">📄 Descargar</td>
+                </tr>
+            </table>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-title">Menú Principal</div>
+            <ul>
+                <li>Dirección Escolar</li>
+                <li>Servicios Académicos</li>
+                <li>Programa de Tutorías</li>
+                <li>Servicios Escolares</li>
+                <li>Oferta Educativa</li>
+            </ul>
+        </div>
     </div>
+
 </body>
 </html>

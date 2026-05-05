@@ -1,8 +1,42 @@
-<div id="salida"></div>
-<script>
-    let datos = "Juan Pérez, Ing. Software";
-    document.write("Salida con document.write: " + datos + "<br>");
-    alert("Salida con alert: " + datos);
-    console.log("Salida con console.log: " + datos);
-    document.getElementById("salida").innerHTML = "Salida con innerHTML: " + datos;
-</script>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 19 - Salidas JS</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 30px; background-color: #f0f4f8; display: flex; justify-content: center; }
+        .container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { color: #004a99; margin-top: 0; text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; background-color: #004a99; margin-top: 10px; }
+        button:hover { opacity: 0.8; }
+        #resultado { margin-top: 20px; padding: 15px; border-radius: 4px; background: #e9ecef; font-weight: bold; text-align: center; color: #333; min-height: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Salidas de Texto</h2>
+        <div class="input-group">
+            <label for="datos">Ingresa tus datos personales:</label>
+            <input type="text" id="datos" placeholder="Ej. Juan Pérez">
+        </div>
+        <button onclick="ejecutarSalidas()">Generar Salidas</button>
+        <div id="resultado">Esperando datos...</div>
+    </div>
+
+    <script>
+        function ejecutarSalidas() {
+            let datos = document.getElementById('datos').value;
+            if(datos === "") {
+                document.getElementById('resultado').innerHTML = "⚠️ Por favor, llena el campo.";
+                return;
+            }
+            console.log("Salida en consola: " + datos);
+            alert("Salida en Alert: " + datos);
+            document.getElementById('resultado').innerHTML = "<b>innerHTML:</b> " + datos + "<br><br><small><i>(Revisa también la consola y la alerta emergente)</i></small>";
+        }
+    </script>
+</body>
+</html>

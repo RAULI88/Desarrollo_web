@@ -1,14 +1,45 @@
-Límite: <input type="number" id="lim" value="10">
-<button onclick="tablas()">Generar</button><div id="r"></div>
-<script>
-    function tablas() {
-        let lim = Number(document.getElementById('lim').value);
-        let out = "";
-        for(let i=1; i<=lim; i++) {
-            out += `<b>Tabla del ${i}:</b><br>`;
-            for(let j=1; j<=10; j++) out += `${i} x ${j} = ${i*j}<br>`;
-            out += "<br>";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Práctica 26 - Tablas</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; padding: 30px; background-color: #f0f4f8; display: flex; justify-content: center; }
+        .container { background: white; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { color: #004a99; margin-top: 0; text-align: center; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; color: white; background-color: #dc3545; margin-top: 10px; }
+        button:hover { opacity: 0.8; }
+        #resultado { margin-top: 20px; padding: 15px; border-radius: 4px; background: #e9ecef; color: #333; min-height: 20px; max-height: 300px; overflow-y: auto; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Generador de Tablas</h2>
+        <div class="input-group">
+            <label>¿Hasta qué número generar?</label>
+            <input type="number" id="limite" value="10">
+        </div>
+        <button onclick="generarTablas()">Generar Tablas</button>
+        <div id="resultado">Las tablas aparecerán aquí...</div>
+    </div>
+
+    <script>
+        function generarTablas() {
+            let limite = Number(document.getElementById('limite').value);
+            if(limite <= 0) return document.getElementById('resultado').innerHTML = "Ingresa un número mayor a 0";
+            
+            let html = "";
+            for(let i = 1; i <= limite; i++) {
+                html += `<h4 style="color:#004a99; margin: 15px 0 5px 0;">Tabla del ${i}</h4>`;
+                for(let j = 1; j <= 10; j++) {
+                    html += `${i} x ${j} = <b>${i*j}</b><br>`;
+                }
+            }
+            document.getElementById('resultado').innerHTML = html;
         }
-        document.getElementById('r').innerHTML = out;
-    }
-</script>
+    </script>
+</body>
+</html>
