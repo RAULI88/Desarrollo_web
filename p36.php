@@ -119,7 +119,7 @@ $usuarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     <h2><?= $accion == 'editar' ? 'Modificar Usuario' : 'Registrar Nuevo Usuario' ?></h2>
     
-    <form method="POST" action="p36.php">
+    <form method="POST" action="">
         <input type="hidden" name="id" value="<?= htmlspecialchars($id_editar) ?>">
         
         <div class="form-group">
