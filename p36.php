@@ -46,6 +46,18 @@ if ($accion == 'editar' && $id_editar) {
 
 // PROCESAR FORMULARIO (Create y Update)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // 👇 --- BLOQUE DE DEPURACIÓN TEMPORAL --- 👇
+    // Este código congelará la pantalla en negro para ver si los datos llegan vivos a PHP
+    echo "<div style='background:#000; color:#0f0; padding:20px; font-family:monospace; line-height:1.6;'>";
+    echo "<h2>[DEPURACIÓN] Métodos y datos recibidos:</h2>";
+    echo "<strong>Método usado:</strong> " . $_SERVER["REQUEST_METHOD"] . "<br><br>";
+    echo "<strong>Contenido del POST:</strong><br>";
+    echo "<pre>"; print_r($_POST); echo "</pre>";
+    echo "</div>";
+    die("<h3>PRUEBA DE DEPURACIÓN:</h3> Si puedes ver esta pantalla negra, tómale una captura de pantalla y envíamela. El código se detuvo aquí a propósito.");
+    // 👆 --- FIN DEL BLOQUE DE DEPURACIÓN --- 👆
+
     $nombres = trim($_POST['nombres']);
     $apellidos = trim($_POST['apellidos']);
     $correo = trim($_POST['correo']);
@@ -73,7 +85,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
         
     } catch (PDOException $e) {
-        // AQUÍ ESTÁ LA MAGIA: SI FALLA, MOSTRARÁ EL MOTIVO EXACTO
         die("<div style='background: #ffdddd; color: #d8000c; padding: 20px; margin: 20px; font-family: sans-serif; border: 1px solid #d8000c; border-radius: 5px;'>
                 <h3>¡Error al guardar en la base de datos!</h3>
                 <p>El servidor MySQL respondió esto:</p>
