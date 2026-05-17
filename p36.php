@@ -1,4 +1,8 @@
 <?php
+// --- ACTIVAR VISUALIZACIÓN DE ERRORES OCULTOS ---
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // --- 1. CONFIGURACIÓN DE LA BASE DE DATOS ---
 $host = 'sql3.freesqldatabase.com';
 $port = '3306';
@@ -42,31 +46,40 @@ if ($accion == 'editar' && $id_editar) {
 
 // PROCESAR FORMULARIO (Create y Update)
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nombres = $_POST['nombres'];
-    $apellidos = $_POST['apellidos'];
-    $correo = $_POST['correo'];
+    $nombres = trim($_POST['nombres']);
+    $apellidos = trim($_POST['apellidos']);
+    $correo = trim($_POST['correo']);
     
-    if (!empty($_POST['id'])) {
-        // ACTUALIZAR (Update)
-        $id_post = $_POST['id'];
-        if (!empty($_POST['contrasena'])) {
-            // Si escribió una nueva contraseña, la actualizamos cifrada
-            $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
-            $stmt = $pdo->prepare("UPDATE usuarios SET nombres=?, apellidos=?, correo=?, contrasena=? WHERE id=?");
-            $stmt->execute([$nombres, $apellidos, $correo, $contrasena, $id_post]);
+    try {
+        if (!empty($_POST['id'])) {
+            // ACTUALIZAR (Update)
+            $id_post = $_POST['id'];
+            if (!empty($_POST['contrasena'])) {
+                $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
+                $stmt = $pdo->prepare("UPDATE usuarios SET nombres=?, apellidos=?, correo=?, contrasena=? WHERE id=?");
+                $stmt->execute([$nombres, $apellidos, $correo, $contrasena, $id_post]);
+            } else {
+                $stmt = $pdo->prepare("UPDATE usuarios SET nombres=?, apellidos=?, correo=? WHERE id=?");
+                $stmt->execute([$nombres, $apellidos, $correo, $id_post]);
+            }
         } else {
-            // Si dejó la contraseña en blanco, actualizamos el resto
-            $stmt = $pdo->prepare("UPDATE usuarios SET nombres=?, apellidos=?, correo=? WHERE id=?");
-            $stmt->execute([$nombres, $apellidos, $correo, $id_post]);
+            // REGISTRAR (Create)
+            $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
+            $stmt = $pdo->prepare("INSERT INTO usuarios (nombres, apellidos, correo, contrasena) VALUES (?, ?, ?, ?)");
+            $stmt->execute([$nombres, $apellidos, $correo, $contrasena]);
         }
-    } else {
-        // REGISTRAR (Create)
-        $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT); // Cifrado de seguridad
-        $stmt = $pdo->prepare("INSERT INTO usuarios (nombres, apellidos, correo, contrasena) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$nombres, $apellidos, $correo, $contrasena]);
+        
+        header("Location: p36.php");
+        exit();
+        
+    } catch (PDOException $e) {
+        // AQUÍ ESTÁ LA MAGIA: SI FALLA, MOSTRARÁ EL MOTIVO EXACTO
+        die("<div style='background: #ffdddd; color: #d8000c; padding: 20px; margin: 20px; font-family: sans-serif; border: 1px solid #d8000c; border-radius: 5px;'>
+                <h3>¡Error al guardar en la base de datos!</h3>
+                <p>El servidor MySQL respondió esto:</p>
+                <strong>" . $e->getMessage() . "</strong>
+             </div>");
     }
-    header("Location: p36.php");
-    exit();
 }
 
 // CONSULTAR TODOS LOS USUARIOS (Read)
