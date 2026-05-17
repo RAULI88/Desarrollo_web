@@ -37,6 +37,7 @@
         <a href="p33.php" class="card"><h3>P33</h3><p>Validador Anagramas.</p><span class="badge">PHP</span></a>
         <a href="p34.php" class="card"><h3>P34</h3><p>Tipo de Cambio.</p><span class="badge">PHP</span></a>
         <a href="p35.php" class="card"><h3>P35</h3><p>Conversor de Segundos.</p><span class="badge">PHP</span></a>
+        <a href="p36.php" class="card"><h3>P36</h3><p>CRUD de Usuarios con MySQL.</p><span class="badge">PHP/MySQL</span></a>
     </div>
 </body>
 </html>
