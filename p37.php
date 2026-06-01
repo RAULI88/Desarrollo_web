@@ -17,11 +17,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty($correo) && !empty($contrasena)) {
         // Configuración de la base de datos remota
-        $host = 'sql3.freesqldatabase.com';
-        $port = '3306';
-        $dbname = 'sql3827221';
-        $username = 'sql3827221';
-        $password = 'yNi7K5WHLf';
+        $host = 'zephyr.proxy.rlwy.net';
+        $port = '30216';
+        $dbname = 'railway';
+        $username = 'root';
+        $password = 'diskLBISvSSxVzPLmlOJFTNzFSCCqeAU';
 
         try {
             $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8", $username, $password);

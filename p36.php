@@ -4,12 +4,11 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // --- 1. CONFIGURACIÓN DE LA BASE DE DATOS ---
-$host = 'sql3.freesqldatabase.com';
-$port = '3306';
-$dbname = 'sql3827221';
-$username = 'sql3827221';
-$password = 'yNi7K5WHLf';
-
+  $host = 'zephyr.proxy.rlwy.net';
+  $port = '30216';
+  $dbname = 'railway';
+  $username = 'root';
+  $password = 'diskLBISvSSxVzPLmlOJFTNzFSCCqeAU';
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
