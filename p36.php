@@ -3,12 +3,22 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// --- 1. CONFIGURACIÓN DE LA BASE DE DATOS ---
-  $host = 'zephyr.proxy.rlwy.net';
-  $port = '30216';
-  $dbname = 'railway';
-  $username = 'root';
-  $password = 'diskLBISvSSxVzPLmlOJFTNzFSCCqeAU';
+// --- 1. CONFIGURACIÓN DE LA BASE DE DATOS (ENV) ---
+if (file_exists(__DIR__ . '/.env')) {
+    $lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) continue;
+        list($name, $value) = explode('=', $line, 2);
+        putenv(trim($name) . '=' . trim($value));
+    }
+}
+
+$host = getenv('DB_HOST');
+$port = getenv('DB_PORT');
+$dbname = getenv('DB_NAME');
+$username = getenv('DB_USER');
+$password = getenv('DB_PASS');
+
 try {
     $pdo = new PDO("mysql:host=$host;port=$port;dbname=$dbname;charset=utf8", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -18,7 +28,6 @@ try {
 
 // --- 2. LÓGICA DEL CRUD ---
 $accion = isset($_GET['accion']) ? $_GET['accion'] : '';
-// CORRECCIÓN: Usar comillas vacías en lugar de null para evitar el error Deprecated de PHP 8.2
 $id_editar = isset($_GET['id']) ? $_GET['id'] : ''; 
 
 // Variables para el formulario de edición
